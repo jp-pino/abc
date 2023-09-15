@@ -83,9 +83,8 @@ runs:
 
         # Give sudo permissions to tar
         sudo mv /usr/bin/tar /usr/bin/tar.orig
-        sudo echo "
-        #!/bin/sh
-        exec sudo /usr/bin/tar.orig \"$@\"" > /usr/bin/tar
+        sudo echo '#!/bin/sh' > /usr/bin/tar
+        sudo echo 'exec sudo /usr/bin/tar.orig "$@"' >> /usr/bin/tar
         sudo chmod +x /usr/bin/tar
 
         ## Cache package directories
