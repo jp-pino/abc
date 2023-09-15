@@ -1,7 +1,9 @@
 #!/bin/bash
 # Don't worry about auto update setting (for now) because apt is fast to update repo
-sudo chown root:wheel /bin/tar && sudo chmod u+s /bin/tar 2> /dev/null
-sudo chown root:wheel /usr/bin/tar && sudo chmod u+s /usr/bin/tar 2> /dev/null
+
+# Give everyone access to /var/cache/apt/ so we don't have to run as root
+sudo chmod -R 777 /var/cache/apt/
+
 
 echo "Updating apt..."
 sudo apt-get update
