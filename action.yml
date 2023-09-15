@@ -81,6 +81,13 @@ runs:
 
         echo "deps=$ABC_DEPS" >> $GITHUB_OUTPUT
 
+        # Give sudo permissions to tar
+        sudo mv /usr/bin/tar /usr/bin/tar.orig
+        sudo echo "
+        #!/bin/sh
+        exec sudo /usr/bin/tar.orig \"$@\"" > /usr/bin/tar
+        sudo chmod +x /usr/bin/tar
+
         ## Cache package directories
         echo "cache_dir=$ABC_CACHE_DIRECTORY" >> $GITHUB_OUTPUT
         ABC_DEPS_HASH=$(echo -n "${ABC_DEPS}" | openssl dgst -sha1 | awk '{ print $NF }')
@@ -135,3 +142,9 @@ runs:
       with:
         path: ${{ steps.abc-init.outputs.cache_dir }}
         key: ${{ runner.os }}-abc-${{ steps.abc-init.outputs.hash }}
+
+    - name: Restore original tar
+      shell: bash
+      run: |
+        sudo rm /usr/bin/tar
+        sudo mv /usr/bin/tar.orig /usr/bin/tar

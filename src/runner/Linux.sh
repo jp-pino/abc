@@ -1,10 +1,5 @@
 #!/bin/bash
 # Don't worry about auto update setting (for now) because apt is fast to update repo
-
-# Give everyone access to /var/cache/apt/ so we don't have to run as root
-sudo chmod -R 777 /var/cache/apt/
-
-
 echo "Updating apt..."
 sudo apt-get update
 
