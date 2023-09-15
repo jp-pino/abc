@@ -77,9 +77,3 @@ jobs:
 
 ## Contributing
 Any and all contributions are welcome! Please open an issue or a pull request.
-
-## Todo
-- Add [automatic dependency caching](https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows)
-> This feature would require this action to be re-written as a node action since
-we cannot use actions/cache for composite actions. This is a [GitHub Actions 
-limitation](https://github.com/actions/runner/issues/862).
