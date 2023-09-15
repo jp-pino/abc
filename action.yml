@@ -79,12 +79,12 @@ runs:
         # Remove extra spaces
         ABC_DEPS=$(echo -n "${ABC_DEPS}" | xargs)
 
-        echo "::set-output name=deps::$ABC_DEPS"
+        echo "deps=$ABC_DEPS" >> $GITHUB_OUTPUT
 
         ## Cache package directories
-        echo "::set-output name=cache_dir::$ABC_CACHE_DIRECTORY"
+        echo "cache_dir=$ABC_CACHE_DIRECTORY" >> $GITHUB_OUTPUT
         ABC_DEPS_HASH=$(echo -n "${ABC_DEPS}" | openssl dgst -sha1 | awk '{ print $NF }')
-        echo "::set-output name=hash::$ABC_DEPS_HASH"
+        echo "hash=$ABC_DEPS_HASH" >> $GITHUB_OUTPUT
 
     - name: Setup | Package cache
       id: abc-cache
